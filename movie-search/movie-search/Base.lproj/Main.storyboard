@@ -1,8 +1,219 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YH7-ru-Gms">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Search Movie Table View Controller-->
+        <scene sceneID="0UV-0u-tXj">
+            <objects>
+                <tableViewController id="38x-ox-ZG6" customClass="SearchMovieTableViewController" customModule="movie_search" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="39I-hV-2Pa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search Movie Titles" id="Ikx-4I-2nx">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" id="p8P-uM-W1H">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p8P-uM-W1H" id="Xj6-dR-LXo">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="9Pc-f6-Nlx" kind="show" identifier="searchToDetail" id="ijl-Pd-piG"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="38x-ox-ZG6" id="9bb-XB-POU"/>
+                            <outlet property="delegate" destination="38x-ox-ZG6" id="Fom-Kt-CRt"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="zNy-rU-lrs"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iDF-dQ-YXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2008" y="346"/>
+        </scene>
+        <!--Movie Detail View Controller-->
+        <scene sceneID="DeJ-0P-a9i">
+            <objects>
+                <viewController id="9Pc-f6-Nlx" customClass="MovieDetailViewController" customModule="movie_search" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JJt-Jb-4nk"/>
+                        <viewControllerLayoutGuide type="bottom" id="D6u-T1-L2j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hif-sI-FWo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NM0-9x-AJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2826" y="140"/>
+        </scene>
+        <!--Watchlist Collection View Controller-->
+        <scene sceneID="pU7-nA-pY2">
+            <objects>
+                <collectionViewController id="YZm-qi-9rK" customClass="WatchlistCollectionViewController" customModule="movie_search" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="0r0-Fw-YRR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="41Z-bQ-1HZ">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="ggL-0H-0j9">
+                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="9Pc-f6-Nlx" kind="show" identifier="watchlistToDetail" id="WnN-Kl-MIw"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="YZm-qi-9rK" id="Oz0-w9-sci"/>
+                            <outlet property="delegate" destination="YZm-qi-9rK" id="rV6-lR-R3M"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="H82-oK-Xdw"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jlu-yZ-UiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2008" y="1052"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="LDH-N4-sWE">
+            <objects>
+                <tabBarController id="YH7-ru-Gms" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="A71-lg-UlY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="eYt-Fp-9SD" kind="relationship" relationship="viewControllers" id="xNa-Sd-N86"/>
+                        <segue destination="VNT-Vh-gNn" kind="relationship" relationship="viewControllers" id="ZQE-e4-69N"/>
+                        <segue destination="J4G-6c-ZmE" kind="relationship" relationship="viewControllers" id="4wa-LM-k7s"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oXO-H0-G4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100" y="654"/>
+        </scene>
+        <!--Discover Movie Collection View Controller-->
+        <scene sceneID="l7w-4e-v9u">
+            <objects>
+                <collectionViewController id="wHg-C3-bJ5" customClass="DiscoverMovieCollectionViewController" customModule="movie_search" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="E5b-b1-oa5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kEz-4y-KcB">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="u7t-wp-A1V">
+                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="9Pc-f6-Nlx" kind="show" identifier="discoverToDetail" id="JWN-hj-0mL"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="wHg-C3-bJ5" id="3Yi-gZ-eDf"/>
+                            <outlet property="delegate" destination="wHg-C3-bJ5" id="f1P-7S-JLd"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="paa-Wn-Fpp"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X9b-gO-f8a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2008" y="-315"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="9Gb-lh-WfM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eYt-Fp-9SD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Discover" id="czd-bY-gqb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wgs-b8-pVZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wHg-C3-bJ5" kind="relationship" relationship="rootViewController" id="GcD-2b-ioM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F4f-qO-5J2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="-315"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="maN-CZ-8E4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VNT-Vh-gNn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" id="lWp-9y-FBm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RcF-Qi-pr7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="38x-ox-ZG6" kind="relationship" relationship="rootViewController" id="Rfq-Hi-7cb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sGG-Tg-Xty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="346"/>
+        </scene>
+        <!--Watchlist-->
+        <scene sceneID="bLv-wH-xXG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J4G-6c-ZmE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Watchlist" id="ZLk-r2-8td"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FTU-uA-yD8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YZm-qi-9rK" kind="relationship" relationship="rootViewController" id="NTv-2v-sY5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u0j-Mp-4D0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="1052"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ijl-Pd-piG"/>
+    </inferredMetricsTieBreakers>
 </document>
