@@ -18,6 +18,7 @@
 		2459DF551CDB00C700BAEA73 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459DF541CDB00C700BAEA73 /* MovieDetailViewController.swift */; };
 		2459DF581CDB01AC00BAEA73 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459DF571CDB01AC00BAEA73 /* NetworkController.swift */; };
 		2459DF5A1CDB024000BAEA73 /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459DF591CDB024000BAEA73 /* MovieController.swift */; };
+		2459DF5D1CDBC25800BAEA73 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459DF5C1CDBC25800BAEA73 /* MovieCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2459DF541CDB00C700BAEA73 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		2459DF571CDB01AC00BAEA73 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		2459DF591CDB024000BAEA73 /* MovieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
+		2459DF5C1CDBC25800BAEA73 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		2459DF561CDB015C00BAEA73 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2459DF5C1CDBC25800BAEA73 /* MovieCollectionViewCell.swift */,
 				2459DF4E1CDAFD7400BAEA73 /* DiscoverMovieCollectionViewController.swift */,
 				2459DF501CDAFD9A00BAEA73 /* SearchMovieTableViewController.swift */,
 				2459DF521CDAFDE600BAEA73 /* WatchlistCollectionViewController.swift */,
@@ -183,6 +186,7 @@
 				2459DF531CDAFDE600BAEA73 /* WatchlistCollectionViewController.swift in Sources */,
 				2459DF5A1CDB024000BAEA73 /* MovieController.swift in Sources */,
 				2459DF551CDB00C700BAEA73 /* MovieDetailViewController.swift in Sources */,
+				2459DF5D1CDBC25800BAEA73 /* MovieCollectionViewCell.swift in Sources */,
 				2459DF581CDB01AC00BAEA73 /* NetworkController.swift in Sources */,
 				2459DF3A1CDACDFE00BAEA73 /* AppDelegate.swift in Sources */,
 			);
