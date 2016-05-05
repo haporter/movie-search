@@ -64,5 +64,13 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
         }
         searchBar.resignFirstResponder()
     }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText == "" {
+            movieSearchResults = []
+            tableView.reloadData()
+        }
+    }
 
 }
