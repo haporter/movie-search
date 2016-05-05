@@ -17,7 +17,7 @@ class MovieController {
     
     static let sharedController = MovieController()
     
-    func nowPlayingMovies(completion: (success: Bool) -> Void) {
+    static func nowPlayingMovies(completion: (success: Bool) -> Void) {
         
         guard let url = NetworkController.nowPlayingURL else {
             
@@ -41,7 +41,7 @@ class MovieController {
                 
                 if let resultsDictionary = JSONObject as? [String: AnyObject], resultsArray = resultsDictionary["results"] as? [[String: AnyObject]] {
                                         
-                    self.nowPlayingMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
+                    MovieController.sharedController.nowPlayingMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
                     
                     completion(success: true)
                 } else {
@@ -55,7 +55,7 @@ class MovieController {
         }
     }
     
-    func searchMoviesWithTitle(title: String, completion: (success: Bool) -> Void) {
+    static func searchMoviesWithTitle(title: String, completion: (success: Bool) -> Void) {
         
         guard let url = NetworkController.searchURL(title) else {
             print("Not a valid URL")
@@ -76,7 +76,12 @@ class MovieController {
                 
                 if let resultsDictionary = JSONObject as? [String: AnyObject], resultsArray = resultsDictionary["results"] as? [[String: AnyObject]] {
                     
-                    self.searchedMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
+                    MovieController.sharedController.searchedMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
+                    
+                    if MovieController.sharedController.searchedMovies.count == 0 {
+                        let nilMovie = Movie(title: "No Movies match this title", overview: "", posterPath: nil, rating: 0.0)
+                        MovieController.sharedController.searchedMovies.append(nilMovie)
+                    }
                     
                     completion(success: true)
                 } else {

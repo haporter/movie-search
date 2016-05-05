@@ -13,11 +13,7 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        // Register cell classes
-        //self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        MovieController.sharedController.nowPlayingMovies { (success) in
+        MovieController.nowPlayingMovies { (success) in
             if success {
                 //print(MovieController.sharedController.nowPlayingMovies.first!.title)
                 //print(MovieController.sharedController.nowPlayingMovies.first!.overview)
