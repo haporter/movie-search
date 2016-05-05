@@ -21,8 +21,16 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
 
         MovieController.sharedController.nowPlayingMovies { (success) in
             if success {
-                print(MovieController.sharedController.nowPlayingMovies.first!.title)
-                print(MovieController.sharedController.nowPlayingMovies.first!.overview)
+                //print(MovieController.sharedController.nowPlayingMovies.first!.title)
+                //print(MovieController.sharedController.nowPlayingMovies.first!.overview)
+            } else {
+                print("The test failed")
+            }
+        }
+        
+        MovieController.sharedController.searchMoviesWithTitle("Sicario") { (success) in
+            if success {
+                print(MovieController.sharedController.searchedMovies.count)
             } else {
                 print("The test failed")
             }
