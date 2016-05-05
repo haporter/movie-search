@@ -12,13 +12,20 @@ struct Movie: Equatable {
     
     private let kTitle = "title"
     private let kOverview = "overview"
-    private let kPosterPath = "posterPath"
-    private let kRating = "voteAverage"
+    private let kPosterPath = "poster_path"
+    private let kRating = "vote_average"
     
     let title: String
     let overview: String
     let posterPath: String?
     let rating: Float
+    
+    init(title: String, overview: String, posterPath: String?, rating: Float) {
+        self.title = title
+        self.overview = overview
+        self.posterPath = posterPath
+        self.rating = rating
+    }
     
     init?(jsonDictionary: [String: AnyObject]) {
         guard let title = jsonDictionary[kTitle] as? String,
