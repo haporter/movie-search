@@ -10,15 +10,22 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
  
-    //@IBOutlet var moviePoster: UIImageView!
+    @IBOutlet var moviePoster: UIImageView!
     @IBOutlet var movieTitleLabel: UILabel!
     
     var movie: Movie? {
         didSet {
             if let movie = movie {
-                let title = movie.title
                 
-                movieTitleLabel.text = title
+                movieTitleLabel.text = movie.title
+                
+                if let posterEndpoint = movie.posterPath, image = MovieController.imageAtEndpoint(posterEndpoint) {
+                    
+                    moviePoster.image = image
+                } else {
+                    moviePoster.image = UIImage(named: "poster_image_placeholder")
+                }
+                
             }
         }
     }

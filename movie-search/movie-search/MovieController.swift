@@ -6,7 +6,7 @@
 //  Copyright © 2016 Andrew Porter. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 class MovieController {
@@ -109,6 +109,15 @@ class MovieController {
                 MovieController.sharedController.watchlistMovies.removeAtIndex(index)
             }
         }
+    }
+    
+    static func imageAtEndpoint(endpoint: String) -> UIImage? {
+        
+        guard let url = NSURL(string: "http://image.tmdb.org/t/p/w500\(endpoint)"),
+                data = NSData(contentsOfURL: url),
+                image = UIImage(data: data) else { return nil }
+        
+         return image
     }
 }
 

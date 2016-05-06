@@ -12,6 +12,8 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Now Playing"
 
         MovieController.nowPlayingMovies { (success) in
             if success {

@@ -35,9 +35,13 @@ class MovieDetailViewController: UIViewController {
     
     func updateViewWithMovie(movie: Movie) {
         
+        self.navigationItem.title = movie.title
         overviewTextView.text = movie.overview
         ratingTextLabel.text = String(movie.rating)
-        self.navigationItem.title = movie.title
+        
+        if let imageEndpoint = movie.backDropPath {
+            backdropImageView.image = MovieController.imageAtEndpoint(imageEndpoint)
+        }
     }
     
     // MARK: - Buttons
