@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Movie: Equatable {
+class Movie: Equatable {
     
     private let kTitle = "title"
     private let kOverview = "overview"

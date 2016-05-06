@@ -13,6 +13,9 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barTintColor = AppearanceController.movieGrey()
+        self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
+        self.view.backgroundColor = UIColor.darkGrayColor()
         self.navigationItem.title = "Now Playing"
         
         /// Set cell dimensions

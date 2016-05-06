@@ -97,6 +97,15 @@ class MovieController {
         }
     }
     
+    static func isOnwatchlist(movie: Movie) -> Bool {
+        
+        if MovieController.sharedController.watchlistMovies.contains(movie) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     static func addMovieToWatchList(movie: Movie) {
         
         MovieController.sharedController.watchlistMovies.append(movie)

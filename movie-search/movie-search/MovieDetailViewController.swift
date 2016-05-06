@@ -19,6 +19,10 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barTintColor = AppearanceController.movieGrey()
+        self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
+        self.view.backgroundColor = UIColor.darkGrayColor()
 
         if let movie = movie {
             
@@ -50,7 +54,13 @@ class MovieDetailViewController: UIViewController {
         
         if let movie = movie {
             
-            MovieController.addMovieToWatchList(movie)
+            if MovieController.isOnwatchlist(movie) {
+                
+                MovieController.removeMovieFromWatchlist(movie)
+                
+            } else {
+                MovieController.addMovieToWatchList(movie)
+            }
         }
     }
     

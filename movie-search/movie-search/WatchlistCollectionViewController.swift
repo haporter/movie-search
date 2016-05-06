@@ -13,6 +13,12 @@ class WatchlistCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barTintColor = AppearanceController.movieGrey()
+        self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
+        self.view.backgroundColor = UIColor.darkGrayColor()
+        self.navigationItem.title = "Watchlist"
+
+        
         MovieController.loadFromUserDefaults()
 
         /// Set cell dimensions
@@ -65,7 +71,7 @@ class WatchlistCollectionViewController: UICollectionViewController {
         if segue.identifier == "watchlistToDetail" {
             if let destinationViewController = segue.destinationViewController as? MovieDetailViewController, indexPaths = collectionView?.indexPathsForSelectedItems(), selectedIndexPath = indexPaths.first {
                 
-                let movie = MovieController.sharedController.nowPlayingMovies[selectedIndexPath.item]
+                let movie = MovieController.sharedController.watchlistMovies[selectedIndexPath.item]
                 
                 destinationViewController.movie = movie
             }

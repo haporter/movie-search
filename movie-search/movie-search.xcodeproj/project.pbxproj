@@ -19,6 +19,7 @@
 		2459DF581CDB01AC00BAEA73 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459DF571CDB01AC00BAEA73 /* NetworkController.swift */; };
 		2459DF5A1CDB024000BAEA73 /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459DF591CDB024000BAEA73 /* MovieController.swift */; };
 		2459DF5D1CDBC25800BAEA73 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459DF5C1CDBC25800BAEA73 /* MovieCollectionViewCell.swift */; };
+		827786121CDD2A25003E207D /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827786111CDD2A25003E207D /* AppearanceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		2459DF571CDB01AC00BAEA73 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		2459DF591CDB024000BAEA73 /* MovieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
 		2459DF5C1CDBC25800BAEA73 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		827786111CDD2A25003E207D /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				2459DF501CDAFD9A00BAEA73 /* SearchMovieTableViewController.swift */,
 				2459DF521CDAFDE600BAEA73 /* WatchlistCollectionViewController.swift */,
 				2459DF541CDB00C700BAEA73 /* MovieDetailViewController.swift */,
+				827786111CDD2A25003E207D /* AppearanceController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				2459DF5D1CDBC25800BAEA73 /* MovieCollectionViewCell.swift in Sources */,
 				2459DF581CDB01AC00BAEA73 /* NetworkController.swift in Sources */,
 				2459DF3A1CDACDFE00BAEA73 /* AppDelegate.swift in Sources */,
+				827786121CDD2A25003E207D /* AppearanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +342,7 @@
 				2459DF4A1CDACDFE00BAEA73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
