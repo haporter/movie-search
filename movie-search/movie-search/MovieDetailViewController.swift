@@ -40,5 +40,15 @@ class MovieDetailViewController: UIViewController {
         self.navigationItem.title = movie.title
     }
     
+    // MARK: - Buttons
+    
+    @IBAction func addToWatchlistButtonTapped() {
+        
+        if let movie = movie {
+            
+            MovieController.addMovieToWatchList(movie)
+        }
+    }
+    
 
 }
