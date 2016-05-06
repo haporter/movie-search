@@ -164,21 +164,36 @@
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="175"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="6KP-UF-Qa2">
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DK5-QF-Kds">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="175"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="duH-7u-wIt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="152"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-WB-OVX">
-                                                    <rect key="frame" x="45" y="155" width="31" height="20"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fD3-XQ-IwW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="175"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXT-qB-iTK">
+                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="155"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJx-aN-tZM">
+                                                            <rect key="frame" x="45" y="160" width="31" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="gqi-TC-CoA"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="gBk-vm-OIm"/>
+                                                        <constraint firstItem="aJx-aN-tZM" firstAttribute="leading" secondItem="fD3-XQ-IwW" secondAttribute="leadingMargin" id="7Un-CJ-42V"/>
+                                                        <constraint firstItem="aJx-aN-tZM" firstAttribute="trailing" secondItem="fD3-XQ-IwW" secondAttribute="trailingMargin" id="NKQ-gM-jPI"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="7Un-CJ-42V"/>
+                                                            <exclude reference="NKQ-gM-jPI"/>
+                                                        </mask>
+                                                    </variation>
+                                                </stackView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
@@ -186,14 +201,14 @@
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="6KP-UF-Qa2" firstAttribute="leading" secondItem="ggL-0H-0j9" secondAttribute="leading" id="XXE-uV-44K"/>
-                                    <constraint firstItem="6KP-UF-Qa2" firstAttribute="top" secondItem="ggL-0H-0j9" secondAttribute="top" id="ihw-z1-xcZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="6KP-UF-Qa2" secondAttribute="trailing" id="xzt-iF-GgW"/>
-                                    <constraint firstAttribute="bottom" secondItem="6KP-UF-Qa2" secondAttribute="bottom" id="zzq-Y5-td2"/>
+                                    <constraint firstItem="DK5-QF-Kds" firstAttribute="top" secondItem="ggL-0H-0j9" secondAttribute="top" id="Dz1-bU-5HP"/>
+                                    <constraint firstAttribute="bottom" secondItem="DK5-QF-Kds" secondAttribute="bottom" id="NKa-HQ-bzI"/>
+                                    <constraint firstItem="DK5-QF-Kds" firstAttribute="leading" secondItem="ggL-0H-0j9" secondAttribute="leading" id="gOt-xq-FT1"/>
+                                    <constraint firstAttribute="trailing" secondItem="DK5-QF-Kds" secondAttribute="trailing" id="iCS-lu-MCm"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="moviePoster" destination="duH-7u-wIt" id="wto-wY-23g"/>
-                                    <outlet property="movieTitleLabel" destination="hNa-WB-OVX" id="YLw-qk-JAo"/>
+                                    <outlet property="moviePoster" destination="RXT-qB-iTK" id="s0F-RL-jWl"/>
+                                    <outlet property="movieTitleLabel" destination="aJx-aN-tZM" id="YSF-RB-n20"/>
                                     <segue destination="9Pc-f6-Nlx" kind="show" identifier="watchlistToDetail" id="WnN-Kl-MIw"/>
                                 </connections>
                             </collectionViewCell>
@@ -264,7 +279,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Fi-j9-eqF">
                                                             <rect key="frame" x="0.0" y="0.0" width="120" height="155"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0AQ-6N-Dem">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0AQ-6N-Dem">
                                                             <rect key="frame" x="45" y="160" width="31" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="W2s-ky-zUG"/>
@@ -383,6 +398,6 @@
         <image name="watchlist_icon" width="40" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JWN-hj-0mL"/>
+        <segue reference="WnN-Kl-MIw"/>
     </inferredMetricsTieBreakers>
 </document>
