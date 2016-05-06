@@ -10,10 +10,10 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
     
-    @IBOutlet weak var imageView: UIView!
-    @IBOutlet weak var backdropImageView: UIImageView!
-    @IBOutlet weak var overviewTextView: UITextView!
-    @IBOutlet weak var ratingTextLabel: UILabel!
+    @IBOutlet var backdropImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var overviewTextView: UITextView!
+    @IBOutlet var ratingTextLabel: UILabel!
     
     // MARK: - Properties
     var movie: Movie?
@@ -21,14 +21,13 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.frame.size.height = self.view.frame.height * 0.3
         self.navigationController?.navigationBar.barTintColor = AppearanceController.movieGrey()
         self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
         self.view.backgroundColor = UIColor.darkGrayColor()
 
         if let movie = movie {
             
-            //updateViewWithMovie(movie)
+            updateViewWithMovie(movie)
         }
     }
 
@@ -42,12 +41,13 @@ class MovieDetailViewController: UIViewController {
     func updateViewWithMovie(movie: Movie) {
         
         overviewTextView.text = movie.overview
-        ratingTextLabel.text = String(movie.vote_average)
+        titleLabel.text = movie.title
+        ratingTextLabel.text = "Average rating: \(movie.vote_average)"
         
         if let imageEndpoint = movie.backdrop_path {
             backdropImageView.image = MovieController.imageAtEndpoint(imageEndpoint)
-            backdropImageView.alpha = 0.45
         }
+        
     }
     
     func createAlertWithMessage(message: String) -> UIAlertController {
