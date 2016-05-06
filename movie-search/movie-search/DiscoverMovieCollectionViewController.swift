@@ -71,6 +71,7 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
     }
     
     
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
