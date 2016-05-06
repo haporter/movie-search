@@ -37,9 +37,9 @@ class MovieDetailViewController: UIViewController {
         
         self.navigationItem.title = movie.title
         overviewTextView.text = movie.overview
-        ratingTextLabel.text = String(movie.rating)
+        ratingTextLabel.text = String(movie.vote_average)
         
-        if let imageEndpoint = movie.backDropPath {
+        if let imageEndpoint = movie.backdrop_path {
             backdropImageView.image = MovieController.imageAtEndpoint(imageEndpoint)
         }
     }

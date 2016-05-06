@@ -19,10 +19,12 @@ class MovieCollectionViewCell: UICollectionViewCell {
                 
                 movieTitleLabel.text = movie.title
                 
-                if let posterEndpoint = movie.posterPath, image = MovieController.imageAtEndpoint(posterEndpoint) {
+                if let posterEndpoint = movie.poster_path, image = MovieController.imageAtEndpoint(posterEndpoint) {
                     
                     moviePoster.image = image
                 } else {
+                    
+                    moviePoster.alpha = 0.4
                     moviePoster.image = UIImage(named: "poster_image_placeholder")
                 }
                 

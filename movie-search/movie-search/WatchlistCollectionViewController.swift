@@ -12,8 +12,15 @@ class WatchlistCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        MovieController.loadFromUserDefaults()
 
-        // Do any additional setup after loading the view.
+        /// Set cell dimensions
+        let width = CGRectGetWidth(self.collectionView!.frame) / 3
+        let height = width * 1.5
+        
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: width, height: height)
     }
     
     override func viewWillAppear(animated: Bool) {

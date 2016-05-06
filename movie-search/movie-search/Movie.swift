@@ -18,16 +18,16 @@ struct Movie: Equatable {
     
     let title: String
     let overview: String
-    let posterPath: String?
-    let backDropPath: String?
-    let rating: Float
+    let poster_path: String?
+    let backdrop_path: String?
+    let vote_average: Float
     
     init(title: String, overview: String, posterPath: String?, backDropPath: String?, rating: Float) {
         self.title = title
         self.overview = overview
-        self.posterPath = posterPath
-        self.backDropPath = backDropPath
-        self.rating = rating
+        self.poster_path = posterPath
+        self.backdrop_path = backDropPath
+        self.vote_average = rating
     }
     
     init?(jsonDictionary: [String: AnyObject]) {
@@ -37,14 +37,30 @@ struct Movie: Equatable {
         
         self.title = title
         self.overview = overview
-        self.posterPath = jsonDictionary[kPosterPath] as? String
-        self.backDropPath = jsonDictionary[kBackDropPath] as? String
-        self.rating = voteAverage
+        self.poster_path = jsonDictionary[kPosterPath] as? String
+        self.backdrop_path = jsonDictionary[kBackDropPath] as? String
+        self.vote_average = voteAverage
+    }
+    
+    func dictionaryCopy() -> [String: AnyObject] {
+        
+        var movieDictionary: [String: AnyObject] = [kTitle: self.title,
+                                                    kOverview: self.overview,
+                                                    kRating: vote_average]
+        if let poster_path = self.poster_path {
+            movieDictionary[kPosterPath] = poster_path
+        }
+        
+        if let backdrop_path = self.backdrop_path {
+            movieDictionary[kBackDropPath] = backdrop_path
+        }
+        
+        return movieDictionary
     }
 }
 
 /// Conform to Equatable protocol
 
 func ==(lhs: Movie, rhs: Movie) -> Bool {
-    return (lhs.title == rhs.title) && (lhs.overview == rhs.overview) && (lhs.rating == rhs.rating)
+    return (lhs.title == rhs.title) && (lhs.overview == rhs.overview) && (lhs.vote_average == rhs.vote_average)
 }

@@ -11,6 +11,8 @@ import UIKit
 
 class MovieController {
     
+    private static let kWatchlistMovies = "watchlist"
+    
     var nowPlayingMovies: [Movie] = []
     var searchedMovies: [Movie] = []
     var watchlistMovies: [Movie] = []
@@ -98,6 +100,8 @@ class MovieController {
     static func addMovieToWatchList(movie: Movie) {
         
         MovieController.sharedController.watchlistMovies.append(movie)
+        
+        saveToUserDefaults()
     }
     
     static func removeMovieFromWatchlist(movie: Movie) {
@@ -107,6 +111,8 @@ class MovieController {
             if let index = MovieController.sharedController.watchlistMovies.indexOf(movie) {
                 
                 MovieController.sharedController.watchlistMovies.removeAtIndex(index)
+                
+                saveToUserDefaults()
             }
         }
     }
@@ -118,6 +124,21 @@ class MovieController {
                 image = UIImage(data: data) else { return nil }
         
          return image
+    }
+    
+    static func saveToUserDefaults() {
+        
+        let movieDictionaries = MovieController.sharedController.watchlistMovies.map({ $0.dictionaryCopy() })
+        
+        NSUserDefaults.standardUserDefaults().setObject(movieDictionaries, forKey: kWatchlistMovies)
+    }
+    
+    static func loadFromUserDefaults() {
+        
+        if let movieDictionaries = NSUserDefaults.standardUserDefaults().objectForKey(kWatchlistMovies) as? [[String: AnyObject]] {
+            
+            MovieController.sharedController.watchlistMovies = movieDictionaries.flatMap({ Movie(jsonDictionary: $0) })
+        }
     }
 }
 
