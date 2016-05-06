@@ -22,6 +22,7 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
         self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
         self.view.backgroundColor = UIColor.darkGrayColor()
         self.navigationItem.title = "Movie Search"
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
 
     }

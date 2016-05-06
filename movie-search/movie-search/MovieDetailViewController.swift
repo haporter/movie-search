@@ -30,6 +30,11 @@ class MovieDetailViewController: UIViewController {
             updateViewWithMovie(movie)
         }
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        self.movie = nil
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -46,6 +51,10 @@ class MovieDetailViewController: UIViewController {
         
         if let imageEndpoint = movie.backdrop_path {
             backdropImageView.image = MovieController.imageAtEndpoint(imageEndpoint)
+            
+        } else {
+            
+            backdropImageView.image = UIImage(named: "poster_image_placeholder")
         }
         
     }
