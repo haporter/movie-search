@@ -13,17 +13,20 @@ struct Movie: Equatable {
     private let kTitle = "title"
     private let kOverview = "overview"
     private let kPosterPath = "poster_path"
+    private let kBackDropPath = "backdrop_path"
     private let kRating = "vote_average"
     
     let title: String
     let overview: String
     let posterPath: String?
+    let backDropPath: String?
     let rating: Float
     
-    init(title: String, overview: String, posterPath: String?, rating: Float) {
+    init(title: String, overview: String, posterPath: String?, backDropPath: String?, rating: Float) {
         self.title = title
         self.overview = overview
         self.posterPath = posterPath
+        self.backDropPath = backDropPath
         self.rating = rating
     }
     
@@ -35,6 +38,7 @@ struct Movie: Equatable {
         self.title = title
         self.overview = overview
         self.posterPath = jsonDictionary[kPosterPath] as? String
+        self.backDropPath = jsonDictionary[kBackDropPath] as? String
         self.rating = voteAverage
     }
 }

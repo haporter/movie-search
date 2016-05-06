@@ -79,7 +79,7 @@ class MovieController {
                     MovieController.sharedController.searchedMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
                     
                     if MovieController.sharedController.searchedMovies.count == 0 {
-                        let nilMovie = Movie(title: "No Movies match this title", overview: "", posterPath: nil, rating: 0.0)
+                        let nilMovie = Movie(title: "No Movies match this title", overview: "", posterPath: nil, backDropPath: nil, rating: 0.0)
                         MovieController.sharedController.searchedMovies.append(nilMovie)
                     }
                     
@@ -94,4 +94,69 @@ class MovieController {
             }
         }
     }
+    
+    static func addMovieToWatchList(movie: Movie) {
+        
+        MovieController.sharedController.watchlistMovies.append(movie)
+    }
+    
+    static func removeMovieFromWatchlist(movie: Movie) {
+        
+        if MovieController.sharedController.watchlistMovies.contains(movie) {
+            
+            if let index = MovieController.sharedController.watchlistMovies.indexOf(movie) {
+                
+                MovieController.sharedController.watchlistMovies.removeAtIndex(index)
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

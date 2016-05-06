@@ -57,5 +57,19 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
         }
         
     }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "discoverToDetail" {
+            if let destinationViewController = segue.destinationViewController as? MovieDetailViewController, indexPaths = collectionView?.indexPathsForSelectedItems(), selectedIndexPath = indexPaths.first {
+                
+                let movie = MovieController.sharedController.nowPlayingMovies[selectedIndexPath.item]
+                
+                destinationViewController.movie = movie
+            }
+        }
+    }
 
 }

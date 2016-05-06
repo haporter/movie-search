@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Search Movie Table View Controller-->
@@ -56,8 +57,43 @@
                     <view key="view" contentMode="scaleToFill" id="hif-sI-FWo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JGo-zX-yAe">
+                                <rect key="frame" x="0.0" y="64" width="600" height="158"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uA9-l4-ymy">
+                                <rect key="frame" x="20" y="230" width="560" height="313"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGA-RI-Nf1">
+                                <rect key="frame" x="512" y="187" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JGo-zX-yAe" firstAttribute="top" secondItem="JJt-Jb-4nk" secondAttribute="bottom" id="0WJ-a9-F9w"/>
+                            <constraint firstItem="uA9-l4-ymy" firstAttribute="top" secondItem="sGA-RI-Nf1" secondAttribute="bottom" constant="22" id="C5C-dX-fgj"/>
+                            <constraint firstItem="uA9-l4-ymy" firstAttribute="top" secondItem="JGo-zX-yAe" secondAttribute="bottom" constant="8" id="E7O-z5-vEd"/>
+                            <constraint firstItem="JGo-zX-yAe" firstAttribute="leading" secondItem="hif-sI-FWo" secondAttribute="leading" id="Qqy-1I-lcv"/>
+                            <constraint firstItem="D6u-T1-L2j" firstAttribute="top" secondItem="uA9-l4-ymy" secondAttribute="bottom" constant="8" id="ZBf-eV-RhK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sGA-RI-Nf1" secondAttribute="trailing" constant="26" id="ceI-1O-k9o"/>
+                            <constraint firstItem="D6u-T1-L2j" firstAttribute="top" secondItem="JGo-zX-yAe" secondAttribute="bottom" constant="329" id="dp2-mG-12f"/>
+                            <constraint firstItem="uA9-l4-ymy" firstAttribute="leading" secondItem="hif-sI-FWo" secondAttribute="leadingMargin" id="fM3-Xf-99q"/>
+                            <constraint firstAttribute="trailing" secondItem="JGo-zX-yAe" secondAttribute="trailing" id="fjc-0m-iOI"/>
+                            <constraint firstItem="uA9-l4-ymy" firstAttribute="trailing" secondItem="hif-sI-FWo" secondAttribute="trailingMargin" id="rCS-dy-uFi"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backdropImageView" destination="JGo-zX-yAe" id="kBL-3r-nxH"/>
+                        <outlet property="overviewTextView" destination="uA9-l4-ymy" id="J4K-mC-Hhq"/>
+                        <outlet property="ratingTextLabel" destination="sGA-RI-Nf1" id="8uV-uL-WZr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NM0-9x-AJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

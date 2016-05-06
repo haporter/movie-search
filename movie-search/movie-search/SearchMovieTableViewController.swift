@@ -65,11 +65,27 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
         searchBar.resignFirstResponder()
     }
     
+    // TODO: - searchBar resignFirstResponder when 
+    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText == "" {
             movieSearchResults = []
             tableView.reloadData()
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "searchToDetail" {
+            if let destinationViewController = segue.destinationViewController as? MovieDetailViewController, indexPath = tableView.indexPathForSelectedRow {
+                
+                let movie = movieSearchResults[indexPath.row]
+                
+                destinationViewController.movie = movie
+                
+            }
         }
     }
 
