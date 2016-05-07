@@ -18,6 +18,8 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
         self.view.backgroundColor = UIColor.darkGrayColor()
         self.navigationItem.title = "Now Playing"
         
+        MovieController.loadFromUserDefaults()
+        
         /// Set cell dimensions
         let width = CGRectGetWidth(self.collectionView!.frame) / 3
         let height = width * 1.5
@@ -27,8 +29,6 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
 
         MovieController.nowPlayingMovies { (success) in
             if success {
-                //print(MovieController.sharedController.nowPlayingMovies.first!.title)
-                //print(MovieController.sharedController.nowPlayingMovies.first!.overview)
                 
                 dispatch_async(dispatch_get_main_queue(), { 
                     self.collectionView?.reloadData()

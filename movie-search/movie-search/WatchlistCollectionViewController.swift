@@ -18,9 +18,6 @@ class WatchlistCollectionViewController: UICollectionViewController {
         self.view.backgroundColor = UIColor.darkGrayColor()
         self.navigationItem.title = "Watchlist"
 
-        
-        MovieController.loadFromUserDefaults()
-
         /// Set cell dimensions
         let width = CGRectGetWidth(self.collectionView!.frame) / 3
         let height = width * 1.5
