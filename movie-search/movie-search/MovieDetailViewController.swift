@@ -45,6 +45,7 @@ class MovieDetailViewController: UIViewController {
     
     func updateViewWithMovie(movie: Movie) {
         
+        changeBarButtonTitle()
         overviewTextView.text = movie.overview
         titleLabel.text = movie.title
         ratingTextLabel.text = "Average rating: \(movie.vote_average)"
@@ -69,9 +70,22 @@ class MovieDetailViewController: UIViewController {
         return alert
     }
     
+    func changeBarButtonTitle() {
+        
+        if let movie = movie {
+            
+            if MovieController.isOnwatchlist(movie) {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Remove From Watchlist", style: .Done, target: self, action: #selector(MovieDetailViewController.watchlistButtonTapped))
+                
+            } else {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add To Watchlist", style: .Done, target: self, action: #selector(MovieDetailViewController.watchlistButtonTapped))
+            }
+        }
+    }
+    
     // MARK: - Buttons
     
-    @IBAction func addToWatchlistButtonTapped() {
+    @IBAction func watchlistButtonTapped() {
         
         if let movie = movie {
             
@@ -79,11 +93,13 @@ class MovieDetailViewController: UIViewController {
                 
                 presentViewController(createAlertWithMessage("\(movie.title) was removed from your watchlist"), animated: true, completion: nil)
                 MovieController.removeMovieFromWatchlist(movie)
+                changeBarButtonTitle()
                 
             } else {
                 
                 presentViewController(createAlertWithMessage("\(movie.title) will be added to your watchlist."), animated: true, completion: nil)
                 MovieController.addMovieToWatchList(movie)
+                changeBarButtonTitle()
             }
         }
     }
