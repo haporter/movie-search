@@ -6,9 +6,9 @@
 //  Copyright © 2016 Andrew Porter. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class Movie: Equatable {
+struct Movie: Equatable {
     
     private let kTitle = "title"
     private let kOverview = "overview"
@@ -21,6 +21,10 @@ class Movie: Equatable {
     let poster_path: String?
     let backdrop_path: String?
     let vote_average: Float
+    
+    // Storing the images on the model to help improve scrolling in collectionViews and tableViews
+    var posterImage: UIImage?
+    var backdropImage: UIImage?
     
     init(title: String, overview: String, posterPath: String?, backDropPath: String?, rating: Float) {
         self.title = title
@@ -37,9 +41,23 @@ class Movie: Equatable {
         
         self.title = title
         self.overview = overview
-        self.poster_path = jsonDictionary[kPosterPath] as? String
-        self.backdrop_path = jsonDictionary[kBackDropPath] as? String
+        
+        if let poster_path = jsonDictionary[kPosterPath] as? String {
+            self.poster_path = poster_path
+            self.posterImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "http://image.tmdb.org/t/p/w500\(poster_path)")!)!)
+        } else {
+            self.poster_path = jsonDictionary[kPosterPath] as? String
+        }
+        
+        if let backdrop_path = jsonDictionary[kBackDropPath] as? String {
+            self.backdrop_path = backdrop_path
+            self.backdropImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "http://image.tmdb.org/t/p/w500\(backdrop_path)")!)!)
+        } else {
+            self.backdrop_path = jsonDictionary[kBackDropPath] as? String
+        }
+        
         self.vote_average = voteAverage
+        
     }
     
     func dictionaryCopy() -> [String: AnyObject] {

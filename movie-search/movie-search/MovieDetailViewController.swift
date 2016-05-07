@@ -50,13 +50,21 @@ class MovieDetailViewController: UIViewController {
         titleLabel.text = movie.title
         ratingTextLabel.text = "Average rating: \(movie.vote_average)"
         
-        if let imageEndpoint = movie.backdrop_path {
-            backdropImageView.image = MovieController.imageAtEndpoint(imageEndpoint)
+        if let backdropImage = movie.backdropImage {
+            backdropImageView.image = backdropImage
             
         } else {
             
             backdropImageView.image = UIImage(named: "poster_image_placeholder")
         }
+        
+//        if let imageEndpoint = movie.backdrop_path {
+//            backdropImageView.image = MovieController.imageAtEndpoint(imageEndpoint)
+//            
+//        } else {
+//            
+//            backdropImageView.image = UIImage(named: "poster_image_placeholder")
+//        }
         
     }
     

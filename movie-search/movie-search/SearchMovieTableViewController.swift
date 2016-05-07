@@ -46,9 +46,13 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
         cell.textLabel?.text = movie.title
         cell.detailTextLabel?.text = movie.overview
         
-        if let posterEndpoint = movie.poster_path {
-            cell.imageView?.image = MovieController.imageAtEndpoint(posterEndpoint)
+        if let posterImage = movie.posterImage {
+            cell.imageView?.image = posterImage
         }
+        
+//        if let posterEndpoint = movie.poster_path {
+//            cell.imageView?.image = MovieController.imageAtEndpoint(posterEndpoint)
+//        }
         
         return cell
     }
