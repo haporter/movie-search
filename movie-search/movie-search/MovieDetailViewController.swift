@@ -13,7 +13,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet var backdropImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var overviewTextView: UITextView!
-    @IBOutlet var ratingTextLabel: UILabel!
+    @IBOutlet var ratingImageView: UIImageView!
     
     // MARK: - Properties
     var movie: Movie?
@@ -48,7 +48,7 @@ class MovieDetailViewController: UIViewController {
         changeBarButtonTitle()
         overviewTextView.text = movie.overview
         titleLabel.text = movie.title
-        ratingTextLabel.text = "Average rating: \(movie.vote_average)"
+        //ratingTextLabel.text = "Average rating: \(movie.vote_average)"
         
         if let backdropImage = movie.backdropImage {
             backdropImageView.image = backdropImage
@@ -58,13 +58,8 @@ class MovieDetailViewController: UIViewController {
             backdropImageView.image = UIImage(named: "poster_image_placeholder")
         }
         
-//        if let imageEndpoint = movie.backdrop_path {
-//            backdropImageView.image = MovieController.imageAtEndpoint(imageEndpoint)
-//            
-//        } else {
-//            
-//            backdropImageView.image = UIImage(named: "poster_image_placeholder")
-//        }
+        ratingImageView.image = starRating(movie.vote_average)
+        ratingImageView.tintColor = AppearanceController.movieOrange()
         
     }
     
@@ -88,6 +83,38 @@ class MovieDetailViewController: UIViewController {
             } else {
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add To Watchlist", style: .Done, target: self, action: #selector(MovieDetailViewController.watchlistButtonTapped))
             }
+        }
+    }
+    
+    func starRating(rating: Float) -> UIImage? {
+        
+        if rating > 0.0 && rating <= 2.0 {
+            // 1 Star
+            print("1 Star Rating")
+            return UIImage(named: "1_stars")
+            
+        } else if rating > 2.0 && rating <= 4.0 {
+            // 2 Star
+            print("2 Star Rating")
+            return UIImage(named: "2_stars")
+            
+        } else if rating > 4.0 && rating < 6.0 {
+            // 3 Star
+            print("3 Star Rating")
+            return UIImage(named: "3_stars")
+            
+        } else if rating > 6.0 && rating < 8.0 {
+            // 4 Star
+            print("4 Star Rating")
+            return UIImage(named: "4_stars")
+            
+        } else if rating > 8.0 && rating <= 10.0 {
+            // 5 Star
+            print("5 Star Rating")
+            return UIImage(named: "5_stars")
+            
+        } else {
+            return nil
         }
     }
     
