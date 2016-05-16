@@ -27,7 +27,8 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
         
         // Activity Indicator
         self.view.addSubview(activityIndicator)
-        activityIndicator.center = self.view.center
+        activityIndicator.center.x = self.view.center.x
+        activityIndicator.center.y = self.view.center.y - 110
         activityIndicator.hidesWhenStopped = true
 
 
