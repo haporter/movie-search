@@ -18,6 +18,14 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
         self.view.backgroundColor = UIColor.darkGrayColor()
         self.navigationItem.title = "Now Playing"
         
+        // Activity Indicator
+        
+        let activityIndicator = UIActivityIndicatorView()
+        self.view.addSubview(activityIndicator)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
         MovieController.loadFromUserDefaults()
         
         /// Set cell dimensions
@@ -32,6 +40,7 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
                 
                 dispatch_async(dispatch_get_main_queue(), { 
                     self.collectionView?.reloadData()
+                    activityIndicator.stopAnimating()
                 })
             } else {
                 print("The test failed")
@@ -86,3 +95,58 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,6 +14,7 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
     @IBOutlet private var movieSearchBar: UISearchBar!
     
     var movieSearchResults: [Movie] = []
+    let activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,11 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
         self.view.backgroundColor = UIColor.darkGrayColor()
         self.navigationItem.title = "Movie Search"
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        // Activity Indicator
+        self.view.addSubview(activityIndicator)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
 
 
     }
@@ -61,6 +67,8 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
+        activityIndicator.startAnimating()
+        
         if let text = searchBar.text {
             
             MovieController.searchMoviesWithTitle(text) { (success) in
@@ -70,6 +78,7 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
+                        self.activityIndicator.stopAnimating()
                         
                     })
                 } else {
