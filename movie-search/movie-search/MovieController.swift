@@ -43,7 +43,7 @@ class MovieController {
                 
                 if let resultsDictionary = JSONObject as? [String: AnyObject], let resultsArray = resultsDictionary["results"] as? [[String: AnyObject]] {
                                         
-                    MovieController.sharedController.nowPlayingMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
+                    MovieController.sharedController.nowPlayingMovies = resultsArray.compactMap({ Movie(jsonDictionary: $0) })
                     
                     completion(true)
                 } else {
@@ -78,7 +78,7 @@ class MovieController {
                 
                 if let resultsDictionary = JSONObject as? [String: AnyObject], let resultsArray = resultsDictionary["results"] as? [[String: AnyObject]] {
                     
-                    MovieController.sharedController.searchedMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
+                    MovieController.sharedController.searchedMovies = resultsArray.compactMap({ Movie(jsonDictionary: $0) })
                     
                     if MovieController.sharedController.searchedMovies.count == 0 {
                         let nilMovie = Movie(title: "No Movies match this title", overview: "", posterPath: nil, backDropPath: nil, rating: 0.0)
@@ -117,7 +117,7 @@ class MovieController {
         
         if MovieController.sharedController.watchlistMovies.contains(movie) {
             
-            if let index = MovieController.sharedController.watchlistMovies.index(of: movie) {
+            if let index = MovieController.sharedController.watchlistMovies.firstIndex(of: movie) {
                 
                 MovieController.sharedController.watchlistMovies.remove(at: index)
                 
@@ -146,7 +146,7 @@ class MovieController {
         
         if let movieDictionaries = UserDefaults.standard.object(forKey: kWatchlistMovies) as? [[String: AnyObject]] {
             
-            MovieController.sharedController.watchlistMovies = movieDictionaries.flatMap({ Movie(jsonDictionary: $0) })
+            MovieController.sharedController.watchlistMovies = movieDictionaries.compactMap({ Movie(jsonDictionary: $0) })
         }
     }
 }

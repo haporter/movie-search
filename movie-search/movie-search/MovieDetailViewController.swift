@@ -58,7 +58,7 @@ class MovieDetailViewController: UIViewController {
             backdropImageView.image = UIImage(named: "poster_image_placeholder")
         }
         
-        ratingImageView.image = starRating(movie.vote_average)
+        ratingImageView.image = starRating(rating: movie.vote_average)
         ratingImageView.tintColor = AppearanceController.movieOrange()
         
     }
