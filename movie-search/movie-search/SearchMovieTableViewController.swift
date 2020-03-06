@@ -11,7 +11,7 @@ import UIKit
 class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Properties
-    @IBOutlet private var movieSearchBar: UISearchBar!
+    @IBOutlet fileprivate var movieSearchBar: UISearchBar!
     
     var movieSearchResults: [Movie] = []
     let activityIndicator = UIActivityIndicatorView()
@@ -20,11 +20,11 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor = AppearanceController.movieGrey()
-        self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
-        self.view.backgroundColor = UIColor.darkGrayColor()
+        self.tabBarController?.tabBar.barTintColor = UIColor.darkGray
+        self.view.backgroundColor = UIColor.darkGray
         self.navigationItem.title = "Movie Search"
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
         // Activity Indicator
         self.view.addSubview(activityIndicator)
         activityIndicator.center.x = self.view.center.x
@@ -41,12 +41,12 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
     
     // MARK: - TableView Data Source methods
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movieSearchResults.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("movieCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
         
         let movie = movieSearchResults[indexPath.row]
         
@@ -66,7 +66,7 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
     
     // MARK: - SearchBar Delegate methods
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         activityIndicator.startAnimating()
         
@@ -77,7 +77,7 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
                     
                     self.movieSearchResults = MovieController.sharedController.searchedMovies
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.tableView.reloadData()
                         self.activityIndicator.stopAnimating()
                         
@@ -93,7 +93,7 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
     
     // TODO: - searchBar resignFirstResponder when 
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText == "" {
             movieSearchResults = []
@@ -103,9 +103,9 @@ class SearchMovieTableViewController: UITableViewController, UISearchBarDelegate
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchToDetail" {
-            if let destinationViewController = segue.destinationViewController as? MovieDetailViewController, indexPath = tableView.indexPathForSelectedRow {
+            if let destinationViewController = segue.destination as? MovieDetailViewController, let indexPath = tableView.indexPathForSelectedRow {
                 
                 let movie = movieSearchResults[indexPath.row]
                 

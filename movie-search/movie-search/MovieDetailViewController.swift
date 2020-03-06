@@ -22,8 +22,8 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor = AppearanceController.movieGrey()
-        self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
-        self.view.backgroundColor = UIColor.darkGrayColor()
+        self.tabBarController?.tabBar.barTintColor = UIColor.darkGray
+        self.view.backgroundColor = UIColor.darkGray
 
         if let movie = movie {
             
@@ -31,7 +31,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         
         self.movie = nil
     }
@@ -43,7 +43,7 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - Functions
     
-    func updateViewWithMovie(movie: Movie) {
+    func updateViewWithMovie(_ movie: Movie) {
         
         changeBarButtonTitle()
         overviewTextView.text = movie.overview
@@ -63,10 +63,10 @@ class MovieDetailViewController: UIViewController {
         
     }
     
-    func createAlertWithMessage(message: String) -> UIAlertController {
+    func createAlertWithMessage(_ message: String) -> UIAlertController {
         
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alert.addAction(action)
         
@@ -78,10 +78,10 @@ class MovieDetailViewController: UIViewController {
         if let movie = movie {
             
             if MovieController.isOnwatchlist(movie) {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Remove From Watchlist", style: .Done, target: self, action: #selector(MovieDetailViewController.watchlistButtonTapped))
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Remove From Watchlist", style: .done, target: self, action: #selector(MovieDetailViewController.watchlistButtonTapped))
                 
             } else {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add To Watchlist", style: .Done, target: self, action: #selector(MovieDetailViewController.watchlistButtonTapped))
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add To Watchlist", style: .done, target: self, action: #selector(MovieDetailViewController.watchlistButtonTapped))
             }
         }
     }
@@ -126,13 +126,13 @@ class MovieDetailViewController: UIViewController {
             
             if MovieController.isOnwatchlist(movie) {
                 
-                presentViewController(createAlertWithMessage("\(movie.title) was removed from your watchlist"), animated: true, completion: nil)
+                present(createAlertWithMessage("\(movie.title) was removed from your watchlist"), animated: true, completion: nil)
                 MovieController.removeMovieFromWatchlist(movie)
                 changeBarButtonTitle()
                 
             } else {
                 
-                presentViewController(createAlertWithMessage("\(movie.title) will be added to your watchlist."), animated: true, completion: nil)
+                present(createAlertWithMessage("\(movie.title) will be added to your watchlist."), animated: true, completion: nil)
                 MovieController.addMovieToWatchList(movie)
                 changeBarButtonTitle()
             }

@@ -11,7 +11,7 @@ import UIKit
 
 class MovieController {
     
-    private static let kWatchlistMovies = "watchlist"
+    fileprivate static let kWatchlistMovies = "watchlist"
     
     var nowPlayingMovies: [Movie] = []
     var searchedMovies: [Movie] = []
@@ -19,7 +19,7 @@ class MovieController {
     
     static let sharedController = MovieController()
     
-    static func nowPlayingMovies(completion: (success: Bool) -> Void) {
+    static func nowPlayingMovies(_ completion: @escaping (_ success: Bool) -> Void) {
         
         guard let url = NetworkController.nowPlayingURL else {
             
@@ -33,35 +33,35 @@ class MovieController {
             // Can't continue if no data was returned
             guard let data = resultsData else {
                 print("No Data was returned. Try checking the URL")
-                completion(success: false)
+                completion(false)
                 return
             }
             
             do {
                 
-                let JSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                let JSONObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
-                if let resultsDictionary = JSONObject as? [String: AnyObject], resultsArray = resultsDictionary["results"] as? [[String: AnyObject]] {
+                if let resultsDictionary = JSONObject as? [String: AnyObject], let resultsArray = resultsDictionary["results"] as? [[String: AnyObject]] {
                                         
                     MovieController.sharedController.nowPlayingMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
                     
-                    completion(success: true)
+                    completion(true)
                 } else {
                     
-                    completion(success: false)
+                    completion(false)
                 }
                 
             } catch {
-                completion(success: false)
+                completion(false)
             }
         }
     }
     
-    static func searchMoviesWithTitle(title: String, completion: (success: Bool) -> Void) {
+    static func searchMoviesWithTitle(_ title: String, completion: @escaping (_ success: Bool) -> Void) {
         
         guard let url = NetworkController.searchURL(title) else {
             print("Not a valid URL")
-            completion(success: false)
+            completion(false)
             return
         }
         
@@ -69,14 +69,14 @@ class MovieController {
             
             guard let data = resultsData else {
                 print("results data was nil")
-                completion(success: false)
+                completion(false)
                 return
             }
             
             do {
-                let JSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                let JSONObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
-                if let resultsDictionary = JSONObject as? [String: AnyObject], resultsArray = resultsDictionary["results"] as? [[String: AnyObject]] {
+                if let resultsDictionary = JSONObject as? [String: AnyObject], let resultsArray = resultsDictionary["results"] as? [[String: AnyObject]] {
                     
                     MovieController.sharedController.searchedMovies = resultsArray.flatMap({ Movie(jsonDictionary: $0) })
                     
@@ -85,19 +85,19 @@ class MovieController {
                         MovieController.sharedController.searchedMovies.append(nilMovie)
                     }
                     
-                    completion(success: true)
+                    completion(true)
                 } else {
                     
-                    completion(success: false)
+                    completion(false)
                 }
                 
             } catch {
-                completion(success: false)
+                completion(false)
             }
         }
     }
     
-    static func isOnwatchlist(movie: Movie) -> Bool {
+    static func isOnwatchlist(_ movie: Movie) -> Bool {
         
         if MovieController.sharedController.watchlistMovies.contains(movie) {
             return true
@@ -106,31 +106,31 @@ class MovieController {
         }
     }
     
-    static func addMovieToWatchList(movie: Movie) {
+    static func addMovieToWatchList(_ movie: Movie) {
         
         MovieController.sharedController.watchlistMovies.append(movie)
         
         saveToUserDefaults()
     }
     
-    static func removeMovieFromWatchlist(movie: Movie) {
+    static func removeMovieFromWatchlist(_ movie: Movie) {
         
         if MovieController.sharedController.watchlistMovies.contains(movie) {
             
-            if let index = MovieController.sharedController.watchlistMovies.indexOf(movie) {
+            if let index = MovieController.sharedController.watchlistMovies.index(of: movie) {
                 
-                MovieController.sharedController.watchlistMovies.removeAtIndex(index)
+                MovieController.sharedController.watchlistMovies.remove(at: index)
                 
                 saveToUserDefaults()
             }
         }
     }
     
-    static func imageAtEndpoint(endpoint: String) -> UIImage? {
+    static func imageAtEndpoint(_ endpoint: String) -> UIImage? {
         
-        guard let url = NSURL(string: "http://image.tmdb.org/t/p/w500\(endpoint)"),
-                data = NSData(contentsOfURL: url),
-                image = UIImage(data: data) else { return nil }
+        guard let url = URL(string: "http://image.tmdb.org/t/p/w500\(endpoint)"),
+                let data = try? Data(contentsOf: url),
+                let image = UIImage(data: data) else { return nil }
         
          return image
     }
@@ -139,12 +139,12 @@ class MovieController {
         
         let movieDictionaries = MovieController.sharedController.watchlistMovies.map({ $0.dictionaryCopy() })
         
-        NSUserDefaults.standardUserDefaults().setObject(movieDictionaries, forKey: kWatchlistMovies)
+        UserDefaults.standard.set(movieDictionaries, forKey: kWatchlistMovies)
     }
     
     static func loadFromUserDefaults() {
         
-        if let movieDictionaries = NSUserDefaults.standardUserDefaults().objectForKey(kWatchlistMovies) as? [[String: AnyObject]] {
+        if let movieDictionaries = UserDefaults.standard.object(forKey: kWatchlistMovies) as? [[String: AnyObject]] {
             
             MovieController.sharedController.watchlistMovies = movieDictionaries.flatMap({ Movie(jsonDictionary: $0) })
         }

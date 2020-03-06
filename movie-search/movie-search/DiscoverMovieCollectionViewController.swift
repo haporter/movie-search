@@ -14,8 +14,8 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor = AppearanceController.movieGrey()
-        self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
-        self.view.backgroundColor = UIColor.darkGrayColor()
+        self.tabBarController?.tabBar.barTintColor = UIColor.darkGray
+        self.view.backgroundColor = UIColor.darkGray
         self.navigationItem.title = "Now Playing"
         
         // Activity Indicator
@@ -29,7 +29,7 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
         MovieController.loadFromUserDefaults()
         
         /// Set cell dimensions
-        let width = CGRectGetWidth(self.collectionView!.frame) / 3
+        let width = self.collectionView!.frame.width / 3
         let height = width * 1.5
         
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -38,7 +38,7 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
         MovieController.nowPlayingMovies { (success) in
             if success {
                 
-                dispatch_async(dispatch_get_main_queue(), { 
+                DispatchQueue.main.async(execute: { 
                     self.collectionView?.reloadData()
                     activityIndicator.stopAnimating()
                 })
@@ -56,23 +56,23 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
     
     // MARK: - CollectionView Data Source
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return MovieController.sharedController.nowPlayingMovies.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("movieCell", forIndexPath: indexPath) as? MovieCollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell {
             let movie = MovieController.sharedController.nowPlayingMovies[indexPath.row]
             
             cell.movie = movie
             
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("movieCell", forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath)
             
             return cell
         }
@@ -83,9 +83,9 @@ class DiscoverMovieCollectionViewController: UICollectionViewController {
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "discoverToDetail" {
-            if let destinationViewController = segue.destinationViewController as? MovieDetailViewController, indexPaths = collectionView?.indexPathsForSelectedItems(), selectedIndexPath = indexPaths.first {
+            if let destinationViewController = segue.destination as? MovieDetailViewController, let indexPaths = collectionView?.indexPathsForSelectedItems, let selectedIndexPath = indexPaths.first {
                 
                 let movie = MovieController.sharedController.nowPlayingMovies[selectedIndexPath.item]
                 

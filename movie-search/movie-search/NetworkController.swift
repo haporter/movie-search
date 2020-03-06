@@ -10,28 +10,28 @@ import Foundation
 
 class NetworkController {
     
-    static let nowPlayingURL = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=2f8796b287c2f5c208d03dabe8515190")
+    static let nowPlayingURL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=2f8796b287c2f5c208d03dabe8515190")
     
-    static func searchURL(searchTerm: String) -> NSURL? {
+    static func searchURL(_ searchTerm: String) -> URL? {
         
-        let modifiedSearchTerm = searchTerm.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        let modifiedSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
         
-        return NSURL(string: "https://api.themoviedb.org/3/search/movie?query=\(modifiedSearchTerm)&api_key=2f8796b287c2f5c208d03dabe8515190")
+        return URL(string: "https://api.themoviedb.org/3/search/movie?query=\(modifiedSearchTerm)&api_key=2f8796b287c2f5c208d03dabe8515190")
     }
     
-    static func dataAtURL(url: NSURL, completion: (resultsData: NSData?) -> Void) {
+    static func dataAtURL(_ url: URL, completion: @escaping (_ resultsData: Data?) -> Void) {
         
-        let session = NSURLSession.sharedSession()
-        let dataTask = session.dataTaskWithURL(url) { (data, _, error) in
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: url, completionHandler: { (data, _, error) in
             
             if let error = error {
                 print(error.localizedDescription)
-                completion(resultsData: nil)
+                completion(nil)
                 
             } else {
-                completion(resultsData: data)
+                completion(data)
             }
-        }
+        }) 
         
         dataTask.resume()
     }
