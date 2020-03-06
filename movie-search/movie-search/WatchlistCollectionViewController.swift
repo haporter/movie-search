@@ -14,19 +14,19 @@ class WatchlistCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor = AppearanceController.movieGrey()
-        self.tabBarController?.tabBar.barTintColor = UIColor.darkGrayColor()
-        self.view.backgroundColor = UIColor.darkGrayColor()
+        self.tabBarController?.tabBar.barTintColor = UIColor.darkGray
+        self.view.backgroundColor = UIColor.darkGray
         self.navigationItem.title = "Watchlist"
 
         /// Set cell dimensions
-        let width = CGRectGetWidth(self.collectionView!.frame) / 3
+        let width = self.collectionView!.frame.width / 3
         let height = width * 1.5
         
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: height)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         self.collectionView?.reloadData()
     }
@@ -38,23 +38,23 @@ class WatchlistCollectionViewController: UICollectionViewController {
 
     // MARK: - CollectionView Data Source
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return MovieController.sharedController.watchlistMovies.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("movieCell", forIndexPath: indexPath) as? MovieCollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell {
             let movie = MovieController.sharedController.watchlistMovies[indexPath.row]
             
             cell.movie = movie
             
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("movieCell", forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath)
             
             return cell
         }
@@ -64,9 +64,9 @@ class WatchlistCollectionViewController: UICollectionViewController {
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "watchlistToDetail" {
-            if let destinationViewController = segue.destinationViewController as? MovieDetailViewController, indexPaths = collectionView?.indexPathsForSelectedItems(), selectedIndexPath = indexPaths.first {
+            if let destinationViewController = segue.destination as? MovieDetailViewController, let indexPaths = collectionView?.indexPathsForSelectedItems, let selectedIndexPath = indexPaths.first {
                 
                 let movie = MovieController.sharedController.watchlistMovies[selectedIndexPath.item]
                 
